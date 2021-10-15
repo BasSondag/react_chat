@@ -6,13 +6,15 @@ import Message from './Message';
 import MessagesHeader from './MessagesHeader';
 import MessageForm from './MessageForm';
 
+
 class Messages extends Component {
     state = {
         messagesRef: firebase.database().ref('messages'),
         channel: this.props.currentChannel,
         user: this.props.currentUser,
         messages: [],
-        loading: true
+        loading: true,
+        progressBar: false
     }
 
     componentDidMount() {
@@ -44,22 +46,29 @@ class Messages extends Component {
                 message={message}
                 user={this.state.user} />
         ))
-    )
+    );
+
+    isProgressBarVissible = precent => {
+        if (precent > 0) {
+            this.setState({ progressBar: true })
+        }
+    }
+
     render() {
-        const { messagesRef, channel, user, messages, loading } = this.state;
+        const { messagesRef, channel, user, messages, loading, progressBar } = this.state;
         return (
             <Fragment>
                 <MessagesHeader />
-
                 <Segment>
-                    <Comment.Group className='messages'>
+                    <Comment.Group className={progressBar ? 'messages__progress' : 'messages'}>
                         {!loading && this.displayMessages(messages)}
                     </Comment.Group>
                 </Segment>
                 <MessageForm
                     messagesRef={messagesRef}
                     currentChannel={channel}
-                    currentUser={user} />
+                    currentUser={user}
+                    isProgressBarVissible={this.isProgressBarVissible} />
             </Fragment>
         );
     }

@@ -10,7 +10,7 @@ import Messages from './Messages/Messages';
 
 
 const App = ({ currentUser, currentChannel }) => (
-  <Grid columns='equal' className='app' style={{ backgroud: '#eee' }}>
+  <Grid columns='equal' className='app' style={{ background: '#eee' }}>
 
     <ColorPanel />
     <SidePanel
