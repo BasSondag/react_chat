@@ -15,7 +15,7 @@ class MessagesHeader extends Component {
                     <span>
                         Channel
                         <Icon
-                            name={' star outline'}
+                            name={'star outline'}
                             color='black' />
                     </span>
                     <Header.Subheader>
