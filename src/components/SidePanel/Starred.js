@@ -56,7 +56,7 @@ class Starred extends Component {
 
     changeChannel = channel => {
         this.setActiveChannel(channel);
-        this.clearNotifications();
+        // this.clearNotifications();
         this.props.setCurrentChannel(channel);
         this.props.setPrivateChannel(false);
         this.setState({ channel })
